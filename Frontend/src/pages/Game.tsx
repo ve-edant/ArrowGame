@@ -8,10 +8,14 @@ const generateArrowSequence = (): string[] => {
   return Array.from({ length: 6 }, () => arrows[Math.floor(Math.random() * arrows.length)]);
 };
 
-const Game: React.FC = () => {
+interface GameProps {
+  currentRound: number; // Renamed prop to avoid conflict
+}
+
+const Game: React.FC<GameProps> = ({currentRound}) => {
   const { roundNumber } = useParams<{ roundNumber: string }>();
   const [sequence, setSequence] = useState<string[]>(generateArrowSequence());
-  const [round, setRound] = useState<number>(1);
+  const [round, setRound] = useState<number>(currentRound || 1);
   const index = useRef<number>(0);
   const navigate = useNavigate();
   const [mistakes, setMistakes] = useState<number>(0);
@@ -104,7 +108,7 @@ const Game: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white">
-      <h1 className="text-3xl font-bold">Round {roundNumber}</h1>
+      <h1 className="text-3xl font-bold">Round {roundNumber || 1}</h1>
       <div className="mt-6 flex space-x-4">
         {sequence.map((arrow, index) => (
           <NewSvg key={index} direction={arrowData[arrow] as "up" | "down" | "left" | "right"} isActive={activeArrows[index]} />

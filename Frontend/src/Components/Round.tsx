@@ -1,21 +1,21 @@
 // Components/Round.tsx
 import React from "react";
 import { useParams } from "react-router-dom";
-import Game from "../pages/Game"; // Import the Game component
+import Game from "../pages/Game";
 
-// Define the props interface
+
 interface RoundProps {
-  round: number; // Define the round prop
+  round: number;
 }
 
 const Round: React.FC<RoundProps> = () => {
   const { roundNumber } = useParams<{ roundNumber: string }>();
-  const round = Number(roundNumber); // Convert to number
+  const round = Number(roundNumber);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white">
       <h1 className="text-3xl font-bold">Round {round}</h1>
-      <Game round={round} /> {/* Pass the round number to the Game component */}
+      <Game currentRound={round} /> {/* Pass the round number to the Game component */}
     </div>
   );
 };
