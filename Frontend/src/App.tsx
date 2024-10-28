@@ -10,8 +10,8 @@ const AppRouter: React.FC = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/game" element={<Game />} />
-        <Route path="/round/:roundNumber" element={<Game />} />
+        <Route path="/game" element={<Game currentRound={1}/>} />
+        <Route path="/round/:roundNumber" element={<Game currentRound={1}/>} />
         <Route path="/highscores" element={<HighScores />} />
         <Route path="/completion" element={<Completion />} />
       </Routes>
